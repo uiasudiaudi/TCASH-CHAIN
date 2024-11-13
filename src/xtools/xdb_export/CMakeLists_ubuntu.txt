@@ -1,0 +1,10 @@
+find_package(OpenMP)
+find_library(jsoncpp_LIBRARIES libjsoncpp.a HINTS ${LIBRARY_OUTPUT_DIRECTORY} REQUIRED)
+
+add_compile_options(-fopenmp)
+
+aux_source_directory(./src xdb_export_src)
+
+add_executable(xdb_export ${xdb_export_src})
+
+target_link_libraries(xdb_export PRIVATE xrpc xsync xdbstore xstore xblockstore xgenesis xtxstore xtxexecutor xmigrate xloader xdata xvledger xxbase ${rocksdb_LIBRARIES} ${jsoncpp_LIBRARIES} OpenMP::OpenMP_CXX)

@@ -1,0 +1,61 @@
+syntax = "proto2";
+
+package top.kadmlia.protobuf;
+
+message BootstrapJoinRequest {
+    optional bytes xid = 1;
+}
+
+message BootstrapJoinResponse {
+    optional bytes public_ip = 1;
+    optional int32 public_port = 2;
+    optional bytes bootstrap_id = 3;
+    optional bytes xid = 4;
+}
+
+message Handshake {
+    optional int32 type = 1;
+    optional bytes public_ip = 2;
+    optional int32 public_port = 3;
+    optional bytes xid = 4;
+}
+
+message NodeInfo {
+    optional bytes public_ip = 1;
+    optional int32 public_port = 2;
+    optional bytes id = 3;
+    optional bytes xid = 4;
+}
+
+message FindClosestNodesRequest {
+    optional uint32 count = 1;
+    optional bytes target_id = 2;
+    repeated uint64 bloomfilter = 3;
+    optional NodeInfo src_nodeinfo = 4;
+}
+
+message FindClosestNodesResponse {
+    repeated NodeInfo nodes = 1;
+    optional bytes public_ip = 2;
+    optional int32 public_port = 3;
+}
+
+// message RootCompleteNodeRequest{}
+
+message RootCompleteNodeResponse{
+    optional NodeInfo nodes = 1;
+}
+
+message RootCacheElectNodesRequest{
+    optional uint64 des_service_type = 1;
+    optional uint32 count = 2;
+}
+
+message RootCacheElectNodesResponse{
+    repeated NodeInfo nodes = 1;
+}
+
+message RootMessage {
+    optional uint32 message_type = 1;
+    optional bytes data = 2;
+}

@@ -1,0 +1,50 @@
+syntax = "proto2";
+
+package tcash.transport.protobuf;
+
+message HopInfo {
+    optional bytes node_id = 1;
+    optional bytes ip = 2;
+    optional int32 port = 3;
+}
+
+message GossipParams {
+    optional uint32 neighber_count = 1;
+    optional uint32 stcash_times = 2;
+	optional int32 gossip_type = 3;
+	optional uint32 max_hop_num = 4;
+    optional uint64 sit1 = 5;
+    optional uint64 sit2 = 6;
+    optional uint64 sit3 = 7;
+    optional uint64 sit4 = 8;
+    optional uint32 overlap_rate = 9;
+	optional bytes header_hash = 10;
+	optional bytes block = 11;
+	optional bool diff_net = 12;
+}
+
+message GossipSyncBlockData {
+	optional bytes header_hash = 1;
+	optional bytes block = 2;
+}
+
+message RoutingMessage {
+    optional bytes src_node_id = 1;
+    optional bytes des_node_id = 2;
+    optional int32 type = 3;
+    optional bytes data = 4;
+    optional uint32 id = 5;
+    optional uint32 ack_id = 6;
+    optional uint32 hop_num = 7;
+    repeated HopInfo hop_nodes = 8;
+    optional uint64 src_service_type = 9;
+    optional uint64 des_service_type = 10;
+    optional uint32 msg_hash = 11;
+    optional bool is_root = 12;
+    optional bool broadcast = 13;
+    repeated uint64 bloomfilter = 14;
+    optional bytes xid = 15;
+    optional uint32 priority = 16;
+    optional GossipParams gossip = 17;
+	optional string debug = 18;
+}

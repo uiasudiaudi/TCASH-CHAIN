@@ -1,0 +1,4 @@
+aux_source_directory(./src src)
+add_executable(tcashio ${src})
+
+target_link_libraries(tcashio PRIVATE xchaininit xsafebox xbasic xpbase jsoncpp pthread dl)

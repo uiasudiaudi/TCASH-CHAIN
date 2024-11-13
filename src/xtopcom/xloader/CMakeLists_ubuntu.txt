@@ -1,0 +1,18 @@
+find_library(jsoncpp_LIBRARIES libjsoncpp.a HINTS ${LIBRARY_OUTPUT_DIRECTORY} REQUIRED)
+
+aux_source_directory(./src src_dir)
+
+add_library(xloader STATIC ${src_dir})
+
+#add_dependencies(xloader xconfig xdata xbasic xpbase)
+
+target_link_libraries(
+    xloader
+    PRIVATE
+    xconfig
+    xmbus
+    xdata
+    xbasic
+    xpbase
+    ${rocksdb_LIBRARIES}
+    ${jsoncpp_LIBRARIES})
